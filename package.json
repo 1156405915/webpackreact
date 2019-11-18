@@ -1,0 +1,30 @@
+{
+  "name": "webpackreact",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1156405915/webpackreact.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/1156405915/webpackreact/issues"
+  },
+  "homepage": "https://github.com/1156405915/webpackreact#readme",
+  "devDependencies": {
+    "@babel/core": "^7.7.2",
+    "@babel/preset-env": "^7.1.6",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.0.6",
+    "babel-preset-env": "^1.7.0",
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
+  }
+}
