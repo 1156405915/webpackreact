@@ -2,7 +2,7 @@ const path = require('path')
 const webpack=require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 // 创建多个实例
@@ -76,6 +76,7 @@ module.exports={
             title:'react',
             template:'./public/index.html'
         }),
+        new CleanWebpackPlugin(),
         //extractCSS,
         extractSCSS, 
         new webpack.NamedModulesPlugin(),

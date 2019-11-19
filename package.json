@@ -4,8 +4,8 @@
   "description": "",
   "main": "webpack.config.js",
   "scripts": {
-    "start":"webpack-dev-server --open",
-    "build":"./node_modules/.bin/webpack",
+    "start": "webpack-dev-server --open",
+    "build": "./node_modules/.bin/webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
