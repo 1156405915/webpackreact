@@ -1,18 +1,23 @@
 const path = require('path')
+const webpack=require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 // 创建多个实例
-const extractCSS = new ExtractTextPlugin('[name]-boundle.css');
-const extractSCSS = new ExtractTextPlugin('[name]-boundle.css');
+const extractCSS = new ExtractTextPlugin('css/[name]-[hash:7].css');
+const extractSCSS = new ExtractTextPlugin('css/[name]-[hash:7].css');
 
 module.exports={ 
-    mode:'development',
+    mode:'development', 
     entry:'./src/app.jsx',
     output:{
-        path:path.resolve(__dirname,'dist'),
-        filename:'appboundle.js'
+        path:path.resolve(__dirname,'dist'), 
+        filename:'app.js'
+    }, 
+    devServer: {
+        contentBase: './dist' 
     },
     module:{
         rules:[
@@ -22,32 +27,58 @@ module.exports={
                 use:{
                     loader:'babel-loader',
                     options:{
-                        presets:['@babel/preset-env','@babel/preset-react']
+                        presets:['@babel/preset-env','@babel/preset-react'] 
                     }
                 }
+            },  
+            {
+                test:/\.css$/,
+                use: extractCSS.extract({
+                    fallback: "style-loader",
+                    use: ["css-loader"]
+                })
             },
-            // {
-            //     test:/\.css$/,
-            //     use: extractCSS.extract({
-            //         fallback: "style-loader",
-            //         use: "css-loader"
-            //     })
-            // },
             {
                 test:/\.scss$/,
                 use: extractSCSS.extract({
                     fallback: "style-loader",
                     use: ["css-loader","sass-loader"]
                 })
+            },
+            {
+                test:/\.(woff|woff2|eot|ttf|otf|svg)$/,
+                use:[
+                    {
+                        loader:'file-loader',
+                        options:{
+                            name:'fontsize/[name]-[hash:7].[ext]'
+                        }
+                    }
+                ]
+            },
+            {
+                test:/\.(png|jpg|gif|jpe?g)$/,
+                use:[
+                    {
+                        loader:'url-loader',
+                        options:{
+                            limit: 8192,
+                            name:'image/[name]-[hash:7].[ext]' ,
+                            publicPath:'../'
+                        }  
+                    }
+                ]
             }
         ]
     },
     plugins:[
         new HtmlWebpackPlugin({
             title:'react',
-            template:'./src/index.html'
+            template:'./public/index.html'
         }),
-        extractCSS,
-        extractSCSS
+        //extractCSS,
+        extractSCSS, 
+        new webpack.NamedModulesPlugin(),
+        new webpack.HotModuleReplacementPlugin()
     ]
 }

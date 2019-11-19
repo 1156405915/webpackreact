@@ -1,10 +1,19 @@
 import React from   'react'
 import ReactDOM from 'react-dom'
-import './index.scss'
-import './common.scss'
+import './assets/css/index.scss'
+import './assets/css/common.scss'
+import './assets/iconfont/iconfont.css'
 class App extends React.Component{
     render (){
-        return(<div>react!!!</div>)
+        return(<div>
+            <i className="iconfont icon-xingxing"></i>
+             <p>react!!!</p>
+             <p>wo laices</p>
+             <p>wo laices</p>
+             <p>wo laices</p>
+             <p>wo laices</p>
+             <p>wo laices</p>
+             </div>)
     }
 }
 
