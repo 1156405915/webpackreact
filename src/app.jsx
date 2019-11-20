@@ -1,59 +1,37 @@
 import React from   'react'
 import ReactDOM from 'react-dom'
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+    useParams
+} from "react-router-dom"
+
 import './assets/css/index.scss'
 import './assets/css/common.scss'
 import './assets/iconfont/iconfont.css'
  
-import InputLst from './components/inputlist.jsx'
-import InputAdd from './components/inputadd.jsx'
-  
-class ListModule extends React.Component{
-    constructor(props){
-        super(props)
-        this.state={
-            list:[]
-        }
-    }
-    inputChange(val){
-        this.state.list.push(val)
-        this.setState({
-            list:this.state.list
-        })
-    }
-    render(){  
-        return(
-            <div>
-                <InputAdd inputChange = {this.inputChange.bind(this)}></InputAdd>
-                <InputLst data={this.state.list}></InputLst>
-            </div>
-        )
-    }
-} 
-
+import {Home} from 'pages/home/index.jsx' 
+import {Product} from 'pages/product/index.jsx' 
+import {User} from 'pages/user/index.jsx' 
+import Layout from 'components/layout.jsx'
 class App extends React.Component{
       
     render (){
         
         return(
-            <div className="container">
-                <div className="top">
-
-                </div>
-                <div className="content">
-                    <div className="leftSlide"> 
-                    </div>
-                    <div className="mainer">
-                        <ListModule></ListModule> 
-                    </div>
-                </div>
-            </div>
+            <Router> 
+            <Layout>
+            <Switch>
+                <Route exact path="/" component={Home} />
+                <Route path="/product" component={Product} />
+                <Route path="/user" component={User} />
+            </Switch>
+            </Layout>
+            </Router>
         )
     }
 }
-
-function MyComponent(){
-    return (<div>
-        helloa
-    </div>)
-}
-ReactDOM.render(<MyComponent></MyComponent>,document.getElementById('root'))
+ 
+ReactDOM.render(<App></App>,document.getElementById('root'))

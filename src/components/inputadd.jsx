@@ -18,11 +18,9 @@ export default class InputAdd extends React.Component{
     render(){  
         return(
             <div>
-                {myname}
                 <input type="text" ref="input"  onChange={this.onChangeInput.bind(this)} placeholder="请输入"/>
                 <button onClick={this.addListener.bind(this)}>添加</button>
             </div>
         )
     }
 }
-InputAdd.contextType = ThemeContext;

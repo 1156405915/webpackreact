@@ -16,8 +16,15 @@ module.exports={
         path:path.resolve(__dirname,'dist'), 
         filename:'app.js'
     }, 
+    resolve:{
+        alias:{
+            pages:path.resolve(__dirname,'src/pages'),
+            components:path.resolve(__dirname,'src/components')
+        }
+    },
     devServer: {
-        contentBase: './dist' 
+        contentBase: './dist'
+        
     },
     module:{
         rules:[
