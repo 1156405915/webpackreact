@@ -51,4 +51,9 @@ class App extends React.Component{
     }
 }
 
-ReactDOM.render(<App></App>,document.getElementById('root'))
+function MyComponent(){
+    return (<div>
+        helloa
+    </div>)
+}
+ReactDOM.render(<MyComponent></MyComponent>,document.getElementById('root'))
