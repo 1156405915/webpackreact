@@ -1,5 +1,8 @@
 import React from 'react'
 export default class PageTitle extends React.Component{
+    componentWillMount(){ 
+        document.title = this.props.title
+    }
     render(){
         return(
             <div className="row">

@@ -12,7 +12,7 @@ const extractSCSS = new ExtractTextPlugin('css/[name]-[hash:7].css');
 module.exports={ 
     mode:'development', 
     entry:'./src/app.jsx',
-    output:{
+    output:{ 
         path:path.resolve(__dirname,'dist'), 
         filename:'app.js'
     }, 
@@ -23,8 +23,8 @@ module.exports={
         }
     },
     devServer: {
-        contentBase: './dist'
-        
+        contentBase: './dist',
+        historyApiFallback: true
     },
     module:{
         rules:[
