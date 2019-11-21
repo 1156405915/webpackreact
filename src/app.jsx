@@ -14,8 +14,9 @@ import './assets/iconfont/iconfont.css'
  
 import {Home} from 'pages/home/index.jsx' 
 import {Product} from 'pages/product/index.jsx' 
+import {Order} from 'pages/order/index.jsx'
 import {User} from 'pages/user/index.jsx' 
-import Layout from 'components/layout.jsx'
+import Layout from 'components/layout/layout.jsx'
 class App extends React.Component{
       
     render (){
@@ -26,6 +27,7 @@ class App extends React.Component{
             <Switch>
                 <Route exact path="/" component={Home} />
                 <Route path="/product" component={Product} />
+                <Route path="/order" component={Order} />
                 <Route path="/user" component={User} />
             </Switch>
             </Layout>

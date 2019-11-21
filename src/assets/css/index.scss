@@ -5,38 +5,4 @@
 body{
     background: #eee;
 }
-ul{
-    li{
-        line-height: 25px;
-        list-style: none;
-    }
-}
-.container{
-    .top{
-        width: 100%;
-        height: 60px;
-        background: #000;
-
-    }
-    .content{
-
-    }
-    .leftSlide{
-        width: 200px;
-        background: green;
-        height: auto;
-        position: absolute;
-        left: 0;
-        top: 60px;
-        bottom: 0;
-    }
-    .mainer{
-        background: #fff;
-        height: auto;
-        position: absolute;
-        left: 200px;
-        top: 60px;
-        bottom: 0;
-        right: 0;
-    }
-}
+ 
