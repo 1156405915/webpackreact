@@ -1,4 +1,7 @@
 import React from 'react'
+import './index.scss'
+import User from 'service/user-service.jsx'
+const _user = new User()
 export default class Login extends React.Component{
     constructor (props){
         super(props)
@@ -13,7 +16,12 @@ export default class Login extends React.Component{
     }
     
     onSubmit(e){
+        _user.Login({username:'admin',password:'admin'})
+        .then((res)=>{
+            console.log(res)
+        },(err)=>{
 
+        })
     }
     
 
