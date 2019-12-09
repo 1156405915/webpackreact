@@ -1,8 +1,23 @@
 import React from 'react'
 import {Link } from 'react-router-dom'
+import Util from 'utils/util.jsx'
+import User from 'service/user-service.jsx'
+const _user = new User()
+const _util = new Util()
 export default class TopNav extends React.Component{
+    constructor(props){
+        super(props)
+        this.state={
+            username:_util.getStorage('userInfo').username
+        }
+        this.logout = this.onLogout.bind(this)
+    }
     onLogout(){
-
+        _user.Logout()
+        .then((res)=>{ 
+            _util.removeStorage('userInfo')
+            window.location.href='/login'
+        },(err)=>{})
     }
     render(){
         return(
@@ -15,7 +30,7 @@ export default class TopNav extends React.Component{
                     <li className="dropdown">
                         <a className="dropdown-toggle" >
                             <i className="fa fa-user fa-fw"></i>
-                            <span>欢迎，奔跑的尿不湿男孩</span>
+                            <span>{this.state.username}</span>
                             {/* {
                                 this.state.username
                                 ? <span>欢迎，{this.state.username}</span>
@@ -25,7 +40,7 @@ export default class TopNav extends React.Component{
                         </a>
                         <ul className="dropdown-menu dropdown-user">
                             <li>
-                                <a onClick={() => {this.onLogout()}}>
+                                <a onClick={this.logout}>
                                     <i className="fa fa-sign-out fa-fw"></i>
                                     <span>退出登录</span>
                                 </a>

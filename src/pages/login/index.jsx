@@ -13,7 +13,9 @@ export default class Login extends React.Component{
             redirect:_util.getUrlParam('redirect')||'/'
         }
     }
- 
+    componentWillMount(){
+        document.title = '登陆'
+    }
     onInputChange(e){
         this.setState({
             [e.target.name]:e.target.value
@@ -28,6 +30,7 @@ export default class Login extends React.Component{
         checkResult = _user.checkLoginInfo(userInfo);
         if(checkResult.status){ 
             _user.Login(userInfo).then((res)=>{ 
+                _util.setStorage('userInfo',res)
                 this.props.history.push(this.state.redirect)
                 
             },(err)=>{

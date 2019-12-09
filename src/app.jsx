@@ -17,6 +17,7 @@ import {Product} from 'pages/product/index.jsx'
 import {Order} from 'pages/order/index.jsx'
 import {User} from 'pages/user/index.jsx' 
 import Login from 'pages/login/index.jsx' 
+import ErrorPage from 'pages/error/index.jsx'
 import Layout from 'components/layout/layout.jsx'
 class App extends React.Component{
       
@@ -33,6 +34,8 @@ class App extends React.Component{
                                 <Route path="/product" component={Product} />
                                 <Route path="/order" component={Order} />
                                 <Route path="/user" component={User} />
+                                <Route component={ErrorPage} />
+
                             </Switch>
                         </Layout>
                     )} /> 
