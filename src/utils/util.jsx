@@ -25,7 +25,12 @@ class Utils {
     doLogin(){ //跳转登录
         window.location.href='/login?redirect='+encodeURIComponent(window.location.pathname)
     }
-
+    getUrlParam(name){
+        let param = window.location.search.split('?')[1] ||'',
+            reg = new RegExp("(^|&)"+name+"=([^&]*)(&|$)"),
+            result = param.match(reg); 
+        return result ? decodeURIComponent(result[2]) : null
+    }
     successTips(resMsg){ //成功提示
         alert(resMsg||'操作成功！')
     }

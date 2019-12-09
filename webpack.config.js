@@ -20,7 +20,8 @@ module.exports={
         alias:{
             pages:path.resolve(__dirname,'src/pages'),
             components:path.resolve(__dirname,'src/components'),
-            service:path.resolve(__dirname,'src/service')
+            service:path.resolve(__dirname,'src/service'),
+            utils:path.resolve(__dirname,'src/utils')
         }
     },
     devServer: {
