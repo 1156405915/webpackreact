@@ -6,7 +6,7 @@ class Utils {
                 url:params.url||'',
                 dataType:params.dataType||'json',
                 data:params.data||null,
-                success(res){
+                success:(res)=>{
                     if(0 == res.status){ //请求成功
                         resolve(res.data,res.msg)
                     }else if(10 == res.status){
@@ -15,7 +15,7 @@ class Utils {
                         reject(res.msg)
                     }
                 },
-                error(err){
+                error:(err)=>{
                     reject(err.statusText)
                 }
             })

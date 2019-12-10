@@ -4,6 +4,7 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
+    Redirect,
     Link,
     useParams
 } from "react-router-dom"
@@ -22,23 +23,23 @@ import Layout from 'components/layout/layout.jsx'
 class App extends React.Component{
       
     render (){
-        
+        const LayoutRouter = (
+        <Layout>
+            <Switch>
+                <Route exact path="/" component={Home} />
+                <Route path="/product" component={Product} />
+                <Route path="/order" component={Order} />
+                <Route exact path="/user" component={User} />
+                {/* <Redirect exact from="/user" to="/user/index" /> */}
+                
+                <Route component={ErrorPage} />
+            </Switch>
+        </Layout>)
         return(
             <Router> 
                 <Switch>
                     <Route path="/login" component={Login} /> 
-                    <Route path="/" render={props=> (
-                        <Layout>
-                            <Switch>
-                                <Route exact path="/" component={Home} />
-                                <Route path="/product" component={Product} />
-                                <Route path="/order" component={Order} />
-                                <Route path="/user" component={User} />
-                                <Route component={ErrorPage} />
-
-                            </Switch>
-                        </Layout>
-                    )} /> 
+                    <Route path="/" render={props=>  LayoutRouter} /> 
                 </Switch>
             
             </Router>
