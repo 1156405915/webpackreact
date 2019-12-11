@@ -68,15 +68,17 @@ class ProductList extends React.Component{
                         </button>
                     </td>
                     <td>
-                        <Link className="opear" to="/product/detail">详情</Link>
-                        <Link className="opear" to="/product/save">编辑</Link>
+                        <Link className="opear" to={`/product/detail/${item.id}`}>详情</Link>
+                        <Link className="opear" to={`/product/save/${item.id}`}>编辑</Link>
                     </td>
                 </tr>
             )
         })
         return(
             <div id="page-wrapper">
-                <PageTitle title="商品列表" />
+                <PageTitle title="商品列表" >
+                    <Link to="/product/save">新增</Link>
+                </PageTitle>
                 <TableList tableHeads={_tableHeads}>
                     {_tableBodys}
                 </TableList>

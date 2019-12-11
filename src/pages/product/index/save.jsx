@@ -7,7 +7,7 @@ class ProductSave extends React.Component{
             <div id="page-wrapper">  
                 <div className="row">
                     <div className="col-md-12">
-                        <span>找不到该路径，</span> 
+                        <span>这里是编辑</span> 
                     </div>
                 </div>
             </div>
