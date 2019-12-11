@@ -14,6 +14,7 @@ module.exports={
     entry:'./src/app.jsx',
     output:{ 
         path:path.resolve(__dirname,'dist'), 
+        publicPath:'/dist/',
         filename:'app.js'
     }, 
     resolve:{
@@ -24,9 +25,10 @@ module.exports={
             utils:path.resolve(__dirname,'src/utils')
         }
     },
-    devServer: {
-        contentBase: './dist',
-        historyApiFallback: true,
+    devServer: { 
+        historyApiFallback: {
+            index:'/dist/index.html'
+        },
         proxy:{
             '/manage' : {
                 target: 'http://admintest.happymmall.com',
