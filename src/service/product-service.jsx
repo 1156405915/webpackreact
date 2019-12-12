@@ -19,5 +19,12 @@ class Product{
             data:data
         })
     }
+    setProductStatus(productInfo){
+        return _util.request({
+            type    : 'post',
+            url     : '/manage/product/set_sale_status.do',
+            data    : productInfo
+        })
+    }
 }
 export default Product

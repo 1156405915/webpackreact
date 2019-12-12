@@ -5,7 +5,7 @@ import PageTitle from 'components/pagetitle.jsx'
 
 import TableList from 'utils/table-list/index.jsx'
 import Pagination from 'utils/pagination/index.jsx'
-
+import IndexListSearch from 'pages/product/index/index-list-search.jsx'
 import Util from 'utils/util.jsx'
 import Product from 'service/product-service.jsx'
 const _util = new Util()
@@ -17,6 +17,8 @@ class ProductList extends React.Component{
             list:[],
             total:1,
             pageNum:1,
+            keyword:'',
+            searchType:'',
             listType:'list'
         }
         this.paginationChange = this.paginationChange.bind(this)
@@ -31,12 +33,30 @@ class ProductList extends React.Component{
             this.getProductList()
         })
     }
-    getProductList(){
-        let _obj = {
-            pageNum:this.state.pageNum,
-            listType:this.state.listType
+    onSearch(searchType,searchKeyWord){
+        this.setState({
+            listType:'search',
+            searchType:searchType,
+            keyword:searchKeyWord
+        },()=>{
+            this.getProductList()
+        })
+    }
+    onSetProductStatus(e,id,status){
+        let newStatus = status==1?2:1,
+            confirmTips = status == 1?'确定要下架该商品？':'确定要上架该商品？';
+        if(window.confirm(confirmTips)){
+            _product.setProductStatus({
+                productId:id,
+                status:newStatus
+            })
+            .then((res)=>{
+                this.getProductList()
+            },(err)=>{})
         }
-        _product.getProductList(_obj)
+    }
+    getProductList(){
+        _product.getProductList(this.state)
         .then((res)=>{
             this.setState({
                 list:res.list,
@@ -63,7 +83,7 @@ class ProductList extends React.Component{
                     <td>￥{item.price}</td>
                     <td>
                         <p>{item.status == 1?'在售':'已下架'}</p>
-                        <button className="btn btn-xs btn-warning"  >
+                        <button className="btn btn-xs btn-warning"  onClick={(e)=>{this.onSetProductStatus(e,item.id,item.status)}}>
                             {item.status == 1?'下架':'上架'}
                         </button>
                     </td>
@@ -76,9 +96,9 @@ class ProductList extends React.Component{
         })
         return(
             <div id="page-wrapper">
-                <PageTitle title="商品列表" >
-                    <Link to="/product/save">新增</Link>
+                <PageTitle title="商品列表" > 
                 </PageTitle>
+                <IndexListSearch  onSearch={(searchType, searchKeyword) => {this.onSearch(searchType, searchKeyword)}} />
                 <TableList tableHeads={_tableHeads}>
                     {_tableBodys}
                 </TableList>
