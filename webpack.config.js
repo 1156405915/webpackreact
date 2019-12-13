@@ -8,6 +8,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 // 创建多个实例
 const extractCSS = new ExtractTextPlugin('css/[name]-[hash:7].css');
 const extractSCSS = new ExtractTextPlugin('css/[name]-[hash:7].css');
+const extractLESS = new ExtractTextPlugin('css/[name]-[hash:7].css');
 
 module.exports={ 
     mode:'development', 
@@ -48,7 +49,10 @@ module.exports={
                 use:{
                     loader:'babel-loader',
                     options:{
-                        presets:['@babel/preset-env','@babel/preset-react'] 
+                        presets:['@babel/preset-env','@babel/preset-react'],
+                        plugins:[
+                            ['import',{libraryName:'antd',style:true}]
+                        ] 
                     }
                 }
             },  
@@ -64,6 +68,12 @@ module.exports={
                 use: extractSCSS.extract({
                     fallback: "style-loader",
                     use: ["css-loader","sass-loader"]
+                })
+            },{
+                test:/\.less$/,
+                use: extractLESS.extract({
+                    fallback: "style-loader",
+                    use: ["css-loader","less-loader"]
                 })
             },
             {
